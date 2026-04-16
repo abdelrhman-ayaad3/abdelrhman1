@@ -15,6 +15,7 @@ body {
     background-color: var(--bg);
     color: var(--text-main);
     line-height: 1.6;
+    overflow-x: hidden; /* يمنع ظهور شريط تمرير أفقي للموقع ككل */
 }
 
 header {
@@ -52,6 +53,7 @@ main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
     border-radius: 12px;
     border: 1px solid var(--border);
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
 }
 
 /* Home Page Hero Section */
@@ -67,12 +69,22 @@ main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
     color: white; border: none; padding: 12px 25px;
     border-radius: 6px; font-weight: 700; cursor: pointer;
     text-decoration: none; display: inline-block;
+    transition: transform 0.2s;
 }
+.btn-primary:active { transform: scale(0.98); }
 
 /* Forms & Tables */
 .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 15px; }
-input { padding: 10px; border: 1px solid var(--border); border-radius: 6px; }
-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+input { padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; }
+
+/* معالجة الجداول للموبايل */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* يسمح بالتمرير الأفقي للجدول فقط */
+    -webkit-overflow-scrolling: touch;
+}
+
+table { width: 100%; border-collapse: collapse; margin-top: 20px; min-width: 500px; }
 th { text-align: left; padding: 12px; background: #f1f5f9; color: var(--text-muted); }
 td { padding: 12px; border-bottom: 1px solid var(--border); }
 
@@ -81,7 +93,43 @@ td { padding: 12px; border-bottom: 1px solid var(--border); }
 
 footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.9rem; }
 
+/* --- Media Queries --- */
+
 @media (max-width: 768px) {
-    .hero-section { flex-direction: column; text-align: center; }
-    header { padding: 15px 20px; flex-direction: column; gap: 10px; }
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+
+    main { margin: 20px auto; padding: 0 15px; }
+
+    .hero-section {
+        flex-direction: column-reverse; /* الصورة فوق النص في الموبايل أجمل */
+        text-align: center;
+        gap: 25px;
+    }
+
+    .hero-content h2 { font-size: 1.8rem; }
+    
+    .card { padding: 25px 15px; }
+
+    .add-course-card { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 1.3rem; }
+    .btn-primary { width: 100%; text-align: center; }
 }
