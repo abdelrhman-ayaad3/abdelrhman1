@@ -1,18 +1,19 @@
-/* الإعدادات العامة للموقع */
+/* 1. إعدادات عامة لضمان عدم خروج العناصر عن الشاشة */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-Body {
+body {
     margin: 0;
     min-height: 100vh;
     font-family: Arial, sans-serif;
     color: white;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    /* تأكد من صحة مسار الصورة في مجلدك */
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
     url("../Media/background.jpg");
     background-size: cover;
     background-position: center;
@@ -21,26 +22,27 @@ Body {
 }
 
 header {
-    background: rgba(12, 90, 244, 0.7);
+    background: rgba(12, 90, 244 ,0.8);
     padding: 20px 10px;
     text-align: center;
 }
 
-/* تعديل القائمة لتصبح مرنة */
+/* 2. جعل القائمة مرنة للموبايل */
 nav {
     background: rgb(39, 100, 192);
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* للسماح للعناصر بالنزول لسطر جديد في الموبايل */
+    flex-wrap: wrap; /* ينزل العناصر لسطر جديد إذا ضاقت الشاشة */
 }
 
 nav a {
     color: white;
-    margin: 10px;
+    margin: 8px 15px;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 nav a:hover {
@@ -55,14 +57,15 @@ main {
     margin: 0 auto;
 }
 
+/* 3. تصحيح كلاس about ليكون متجاوباً */
 .about {
     background-color: rgba(17, 40, 170, 0.6);
     border: 2px solid aqua;
-    padding: 20px;
+    padding: 25px;
     margin: 20px auto;
     border-radius: 10px;
     text-align: center;
-    width: 95%;
+    width: 100%;
     max-width: 800px;
 }
 
@@ -72,10 +75,10 @@ main {
     list-style-position: inside;
 }
 
-/* تنسيق الجداول للموبايل */
-.table-wrapper {
+/* 4. حل مشكلة الجدول في الموبايل */
+.table-container {
     width: 100%;
-    overflow-x: auto; /* يسمح بالتمرير الأفقي للجدول فقط */
+    overflow-x: auto; /* يظهر شريط تمرير للجدول فقط */
     margin-top: 20px;
 }
 
@@ -83,7 +86,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     background: rgba(17, 40, 170, 0.8);
-    min-width: 600px; /* لضمان وضوح البيانات عند التمرير */
+    min-width: 600px; /* يحافظ على شكل الجدول عند التمرير */
 }
 
 th, td {
@@ -93,37 +96,31 @@ th, td {
 }
 
 th {
-    background: rgb(255, 255, 255);
+    background: white;
     color: #000;
 }
 
-/* تنسيق النماذج */
-.form-section {
-    max-width: 500px;
+/* 5. النماذج (Forms) */
+.form-section, .contact-box {
+    width: 100%;
+    max-width: 600px;
     margin: 30px auto;
     background: rgba(17, 40, 170, 0.6);
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
-    width: 100%;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label { margin: 10px 0 5px; }
-
+form { display: flex; flex-direction: column; }
 input, textarea {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    outline: none;
     width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
 }
 
 button {
-    margin-top: 15px;
     padding: 12px;
     background: rgb(76, 110, 245);
     color: white;
@@ -133,33 +130,16 @@ button {
     cursor: pointer;
 }
 
-.contact-box {
-    max-width: 700px;
-    margin: 50px auto;
-    background: rgba(17, 40, 170, 0.6);
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
-    border: 2px solid rgb(39, 100, 192);
-    width: 100%;
-}
-
 footer {
     background-color: rgb(39, 100, 192);
-    color: white;
+    padding: 20px;
     text-align: center;
-    padding: 20px 10px;
+    margin-top: auto;
 }
 
-/* --- تعديلات الموبايل (Media Queries) --- */
+/* --- Media Queries للموبايل --- */
 @media (max-width: 768px) {
-    header h1 { font-size: 1.5rem; }
-    
-    nav { padding: 10px; }
-    nav a { margin: 5px; font-size: 14px; }
-    
-    .about, .form-section, .contact-box {
-        width: 100%;
-        margin: 10px 0;
-    }
+    header h1 { font-size: 1.6rem; }
+    nav a { margin: 5px 10px; font-size: 0.9rem; }
+    .about, .form-section, .contact-box { padding: 15px; }
 }
