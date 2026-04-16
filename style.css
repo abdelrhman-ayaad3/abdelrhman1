@@ -1,135 +1,165 @@
-:root {
-    --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-    --primary-color: #3b82f6;
-    --bg: #f8fafc;
-    --card: #ffffff;
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    --border: #e2e8f0;
+/* الإعدادات العامة للموقع */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: var(--bg);
-    color: var(--text-main);
-    line-height: 1.6;
-    overflow-x: hidden; /* يمنع ظهور شريط تمرير أفقي للموقع ككل */
+Body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url("../Media/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 header {
-    background: var(--primary-gradient);
-    padding: 15px 50px; 
+    background: rgba(12, 90, 244, 0.7);
+    padding: 20px 10px;
+    text-align: center;
+}
+
+/* تعديل القائمة لتصبح مرنة */
+nav {
+    background: rgb(39, 100, 192);
+    padding: 15px;
+    text-align: center;
     display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    justify-content: center;
+    flex-wrap: wrap; /* للسماح للعناصر بالنزول لسطر جديد في الموبايل */
 }
 
-.logo-container { display: flex; align-items: center; gap: 10px; }
-.logo-icon { width: 30px; height: 30px; }
-header h1 { font-size: 1.6rem; font-weight: 800; color: #ffffff; }
-
-nav { display: flex; gap: 10px; }
 nav a {
+    color: white;
+    margin: 10px;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.85);
-    padding: 8px 15px;
-    font-weight: 600;
-    transition: 0.3s;
-    border-radius: 6px;
-}
-nav a:hover, nav a.active { color: #ffffff; background: rgba(255, 255, 255, 0.2); }
-
-main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-
-.card {
-    background: var(--card);
-    padding: 40px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
+    font-weight: bold;
 }
 
-/* Home Page Hero Section */
-.hero-section { display: flex; align-items: center; gap: 40px; }
-.hero-content { flex: 1; }
-.hero-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
-.hero-image { flex: 1; text-align: center; }
-.hero-image img { width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-
-/* Buttons */
-.btn-primary {
-    background: var(--primary-gradient);
-    color: white; border: none; padding: 12px 25px;
-    border-radius: 6px; font-weight: 700; cursor: pointer;
-    text-decoration: none; display: inline-block;
-    transition: transform 0.2s;
+nav a:hover {
+    color: rgb(0, 255, 255);
 }
-.btn-primary:active { transform: scale(0.98); }
 
-/* Forms & Tables */
-.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 15px; }
-input { padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; }
+main {
+    flex: 1;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-/* معالجة الجداول للموبايل */
-.table-container {
+.about {
+    background-color: rgba(17, 40, 170, 0.6);
+    border: 2px solid aqua;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    text-align: center;
+    width: 95%;
+    max-width: 800px;
+}
+
+.about ul {
+    margin-top: 15px;
+    text-align: left;
+    list-style-position: inside;
+}
+
+/* تنسيق الجداول للموبايل */
+.table-wrapper {
     width: 100%;
     overflow-x: auto; /* يسمح بالتمرير الأفقي للجدول فقط */
-    -webkit-overflow-scrolling: touch;
+    margin-top: 20px;
 }
 
-table { width: 100%; border-collapse: collapse; margin-top: 20px; min-width: 500px; }
-th { text-align: left; padding: 12px; background: #f1f5f9; color: var(--text-muted); }
-td { padding: 12px; border-bottom: 1px solid var(--border); }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(17, 40, 170, 0.8);
+    min-width: 600px; /* لضمان وضوح البيانات عند التمرير */
+}
 
-.centered-container { display: flex; justify-content: center; align-items: center; min-height: 70vh; }
-.add-course-card { width: 100%; max-width: 500px; }
+th, td {
+    border: 1px solid rgb(227, 229, 235);
+    padding: 12px;
+    text-align: center;
+}
 
-footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.9rem; }
+th {
+    background: rgb(255, 255, 255);
+    color: #000;
+}
 
-/* --- Media Queries --- */
+/* تنسيق النماذج */
+.form-section {
+    max-width: 500px;
+    margin: 30px auto;
+    background: rgba(17, 40, 170, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
 
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label { margin: 10px 0 5px; }
+
+input, textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px;
+    background: rgb(76, 110, 245);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.contact-box {
+    max-width: 700px;
+    margin: 50px auto;
+    background: rgba(17, 40, 170, 0.6);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid rgb(39, 100, 192);
+    width: 100%;
+}
+
+footer {
+    background-color: rgb(39, 100, 192);
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+/* --- تعديلات الموبايل (Media Queries) --- */
 @media (max-width: 768px) {
-    header {
-        padding: 15px 20px;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    nav {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-
-    nav a {
-        font-size: 0.85rem;
-        padding: 6px 10px;
-    }
-
-    main { margin: 20px auto; padding: 0 15px; }
-
-    .hero-section {
-        flex-direction: column-reverse; /* الصورة فوق النص في الموبايل أجمل */
-        text-align: center;
-        gap: 25px;
-    }
-
-    .hero-content h2 { font-size: 1.8rem; }
+    header h1 { font-size: 1.5rem; }
     
-    .card { padding: 25px 15px; }
-
-    .add-course-card { max-width: 100%; }
-}
-
-@media (max-width: 480px) {
-    header h1 { font-size: 1.3rem; }
-    .btn-primary { width: 100%; text-align: center; }
+    nav { padding: 10px; }
+    nav a { margin: 5px; font-size: 14px; }
+    
+    .about, .form-section, .contact-box {
+        width: 100%;
+        margin: 10px 0;
+    }
 }
