@@ -1,145 +1,135 @@
-/* 1. إعدادات عامة لضمان عدم خروج العناصر عن الشاشة */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root {
+    --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    --primary-color: #3b82f6;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
 }
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    /* تأكد من صحة مسار الصورة في مجلدك */
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-    url("../Media/background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden; /* يمنع ظهور شريط تمرير أفقي للموقع ككل */
 }
 
 header {
-    background: rgba(12, 90, 244 ,0.8);
-    padding: 20px 10px;
-    text-align: center;
-}
-
-/* 2. جعل القائمة مرنة للموبايل */
-nav {
-    background: rgb(39, 100, 192);
-    padding: 10px;
-    text-align: center;
+    background: var(--primary-gradient);
+    padding: 15px 50px; 
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* ينزل العناصر لسطر جديد إذا ضاقت الشاشة */
+    justify-content: space-between; 
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
+.logo-container { display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 30px; height: 30px; }
+header h1 { font-size: 1.6rem; font-weight: 800; color: #ffffff; }
+
+nav { display: flex; gap: 10px; }
 nav a {
-    color: white;
-    margin: 8px 15px;
     text-decoration: none;
-    font-weight: bold;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 8px 15px;
+    font-weight: 600;
     transition: 0.3s;
+    border-radius: 6px;
+}
+nav a:hover, nav a.active { color: #ffffff; background: rgba(255, 255, 255, 0.2); }
+
+main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+
+.card {
+    background: var(--card);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
 }
 
-nav a:hover {
-    color: rgb(0, 255, 255);
-}
+/* Home Page Hero Section */
+.hero-section { display: flex; align-items: center; gap: 40px; }
+.hero-content { flex: 1; }
+.hero-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.hero-image { flex: 1; text-align: center; }
+.hero-image img { width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-main {
-    flex: 1;
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Buttons */
+.btn-primary {
+    background: var(--primary-gradient);
+    color: white; border: none; padding: 12px 25px;
+    border-radius: 6px; font-weight: 700; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: transform 0.2s;
 }
+.btn-primary:active { transform: scale(0.98); }
 
-/* 3. تصحيح كلاس about ليكون متجاوباً */
-.about {
-    background-color: rgba(17, 40, 170, 0.6);
-    border: 2px solid aqua;
-    padding: 25px;
-    margin: 20px auto;
-    border-radius: 10px;
-    text-align: center;
-    width: 100%;
-    max-width: 800px;
-}
+/* Forms & Tables */
+.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 15px; }
+input { padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; }
 
-.about ul {
-    margin-top: 15px;
-    text-align: left;
-    list-style-position: inside;
-}
-
-/* 4. حل مشكلة الجدول في الموبايل */
+/* معالجة الجداول للموبايل */
 .table-container {
     width: 100%;
-    overflow-x: auto; /* يظهر شريط تمرير للجدول فقط */
-    margin-top: 20px;
+    overflow-x: auto; /* يسمح بالتمرير الأفقي للجدول فقط */
+    -webkit-overflow-scrolling: touch;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: rgba(17, 40, 170, 0.8);
-    min-width: 600px; /* يحافظ على شكل الجدول عند التمرير */
-}
+table { width: 100%; border-collapse: collapse; margin-top: 20px; min-width: 500px; }
+th { text-align: left; padding: 12px; background: #f1f5f9; color: var(--text-muted); }
+td { padding: 12px; border-bottom: 1px solid var(--border); }
 
-th, td {
-    border: 1px solid rgb(227, 229, 235);
-    padding: 12px;
-    text-align: center;
-}
+.centered-container { display: flex; justify-content: center; align-items: center; min-height: 70vh; }
+.add-course-card { width: 100%; max-width: 500px; }
 
-th {
-    background: white;
-    color: #000;
-}
+footer { text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.9rem; }
 
-/* 5. النماذج (Forms) */
-.form-section, .contact-box {
-    width: 100%;
-    max-width: 600px;
-    margin: 30px auto;
-    background: rgba(17, 40, 170, 0.6);
-    padding: 25px;
-    border-radius: 10px;
-}
+/* --- Media Queries --- */
 
-form { display: flex; flex-direction: column; }
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: none;
-}
-
-button {
-    padding: 12px;
-    background: rgb(76, 110, 245);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-footer {
-    background-color: rgb(39, 100, 192);
-    padding: 20px;
-    text-align: center;
-    margin-top: auto;
-}
-
-/* --- Media Queries للموبايل --- */
 @media (max-width: 768px) {
-    header h1 { font-size: 1.6rem; }
-    nav a { margin: 5px 10px; font-size: 0.9rem; }
-    .about, .form-section, .contact-box { padding: 15px; }
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+
+    main { margin: 20px auto; padding: 0 15px; }
+
+    .hero-section {
+        flex-direction: column-reverse; /* الصورة فوق النص في الموبايل أجمل */
+        text-align: center;
+        gap: 25px;
+    }
+
+    .hero-content h2 { font-size: 1.8rem; }
+    
+    .card { padding: 25px 15px; }
+
+    .add-course-card { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 1.3rem; }
+    .btn-primary { width: 100%; text-align: center; }
 }
